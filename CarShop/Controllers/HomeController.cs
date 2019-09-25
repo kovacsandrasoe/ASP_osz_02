@@ -38,6 +38,10 @@ namespace CarShop.Controllers
         [HttpPost]
         public IActionResult Add(Car newcar)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(nameof(Add), newcar);
+            }
             repo.Add(newcar);
             return RedirectToAction(nameof(Index));
             //return Index();
