@@ -37,7 +37,10 @@ namespace CarShop
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStatusCodePagesWithReExecute("/Error/Handler", "?code={0}");
+
             app.UseMvcWithDefaultRoute();
+
         }
     }
 }

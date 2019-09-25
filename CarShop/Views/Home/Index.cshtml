@@ -24,6 +24,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.HorsePower)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PictureInfo)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -41,6 +44,10 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.HorsePower)
+            </td>
+            <td>
+                <img src="/Home/GetContent?id=@item.Id"
+                     width="50" height="50" />
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

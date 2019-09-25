@@ -35,9 +35,36 @@ namespace CarShop.Controllers
             return View();
         }
 
+        [HttpGet]
+        public FileContentResult GetContent(int id)
+        {
+            var car = repo.GetById(id);
+            return new FileContentResult
+                (car.PictureData, car.ContentType);
+        }
+
         [HttpPost]
         public IActionResult Add(Car newcar)
         {
+            //image/jpeg
+            newcar.ContentType = newcar.PictureInfo.ContentType;
+
+            byte[] data = new byte[newcar.PictureInfo.Length];
+
+            using (var stream = newcar.PictureInfo.OpenReadStream())
+            {
+                stream.Read(data, 0, (int)newcar.PictureInfo.Length);
+            }
+
+            newcar.PictureData = data;
+
+
+            if (newcar.Plate == "AAA-111")
+            {
+                return StatusCode(306);
+            }
+
+
             if (!ModelState.IsValid)
             {
                 return View(nameof(Add), newcar);

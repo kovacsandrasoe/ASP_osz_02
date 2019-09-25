@@ -6,7 +6,8 @@
 
 <h2>Add</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Add", "Home", FormMethod.Post, 
+     new { enctype = "multipart/form-data" }))
 {
     <p>
         @Html.LabelFor(t => t.Plate)
@@ -22,6 +23,10 @@
         @Html.LabelFor(t => t.HorsePower)
         @Html.EditorFor(t => t.HorsePower)
         @Html.ValidationMessageFor(t => t.HorsePower)
+    </p>
+    <p>
+        @Html.LabelFor(t => t.PictureInfo)
+        <input type="file" name="PictureInfo"/>
     </p>
     <p>
         <input type="submit" value="Mentés" />

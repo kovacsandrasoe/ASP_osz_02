@@ -1,7 +1,9 @@
 ﻿using CarShop.Validations;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -27,5 +29,14 @@ namespace CarShop.Models
         [Required(ErrorMessage = "Ez a mező kötelező")]
         [Display(Name = "Teljesítmény (LE)")]
         public int HorsePower { get; set; }
+
+        [NotMapped]
+        public IFormFile PictureInfo { get; set; }
+
+        public byte[] PictureData { get; set; }
+
+        public string ContentType { get; set; }
+
+
     }
 }
